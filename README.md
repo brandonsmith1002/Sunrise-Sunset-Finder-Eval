@@ -17,7 +17,7 @@ This Web App uses the following frameworks
 - [i18Next](https://www.i18next.com/)
 - [Jest](https://jestjs.io/)
 
-This App is written in React 18 using functional components, and is styled in a responsive design with Bootstrap 5.  It is statically typed with TypeScript and uses React PropTypes for runtime type checking of function props.  The design of each component is to have a single logical purpose, and to be reusable.  The App will responsively work on any screen size.
+This App is written in React 18 using functional components, and is styled in a responsive design with Bootstrap 5.  It is statically typed with TypeScript and uses React PropTypes for runtime type checking of function props.  The code has been linted with ESLint and formated with Prettier, according to best practices. The design of each component is to have a single logical purpose, and to be reusable.  The App will responsively work on any screen size.
 
 ### Internationalization
 
