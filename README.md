@@ -1,8 +1,39 @@
-# Sunrise and Sunset Finder
+# Sunrise and Sunset Finder Eval
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This web app provides a way for a user to find the sunrise and sunset times by IP Address.  These times will be in the local time zone of the user, not the location of the IP Address.  There is also an "Auto Find" feature that will automatically find the users IP for them.  Once an IP Address is entered and the user selects "Go", the sunrise and sunrise times will be displayed.  In addition, the map will be zoomed with a pin marking the location determined by the IP Address.
+
+### Setup and start ###
+1. Requires [NodeJS](https://nodejs.org/en/) and [NPM](https://www.npmjs.com/).  It has been tested with NodeJS 16 and 18.
+2. Run the command "npm ci" from the root directory that has the package.json.
+3. Run the command "npm start" from the same directory.  This should launch a localhost:3000 and run the app.
+
+## Development / Application Design
+
+This Web App uses the following frameworks
+- [TypeScript](https://www.typescriptlang.org/)
+- [React](https://reactjs.org/)
+- [Bootstrap](https://getbootstrap.com/)
+- [Leaflet Map](https://leafletjs.com/)
+- [i18Next](https://www.i18next.com/)
+- [Jest](https://jestjs.io/)
+
+This App is written in React 18 using functional components, and is styled in a responsive design with Bootstrap 5.  It is statically typed with TypeScript and uses React PropTypes for runtime type checking of function props.  The design of each component is to have a single logical purpose, and to be reusable.  The App will responsively work on any screen size.
+
+### Internationalization
+
+Using [i18Next](https://www.i18next.com/) the App is ready for internationalization.  All of the user facing text is stored in a translations file that can be swapped with any translation file to change the language.
+
+### Unit Tests
+
+Jest component tests can be run with the command (npm test).
+
+### Future Thoughts
+
+The App was designed with scalability in mind.  It would be easy to add new ways of inputting geographic data, either by form input or map selection.  New components and features can be easily added to the project without interfering with existing functionality.
 
 ## Available Scripts
+
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 In the project directory, you can run:
 
