@@ -27,6 +27,12 @@ Using [i18Next](https://www.i18next.com/) the App is ready for internationalizat
 
 Jest component tests can be run with the command (npm test).
 
+### External APIs
+
+* https://geolocation-db.com
+* https://ipbase.com/
+* https://sunrise-sunset.org/api
+
 ### Future Thoughts
 
 The App was designed with scalability in mind.  It would be easy to add new ways of inputting geographic data, either by form input or map selection.  New components and features can be easily added to the project without interfering with existing functionality.
