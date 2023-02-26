@@ -1,16 +1,16 @@
-import React, { useState, useRef } from 'react';
-import { getTranslation } from '../../utils/translations';
-import IpAddressInput from '../IpAddressInput/IpAddressInput';
-import SunriseSunsetDisplay from '../SunriseSunsetDisplay/SunriseSunsetDisplay';
-import LeafletMap from '../LeafletMap/LeafletMap';
-import { getGeoFromIp } from '../../services/geoIp';
-import { getGeoLocation } from '../../services/geoLocation';
-import { getSunriseSunset } from '../../services/sunriseSunset';
+import React, { useState, useRef } from "react";
+import { getTranslation } from "../../utils/translations";
+import IpAddressInput from "../IpAddressInput/IpAddressInput";
+import SunriseSunsetDisplay from "../SunriseSunsetDisplay/SunriseSunsetDisplay";
+import LeafletMap from "../LeafletMap/LeafletMap";
+import { getGeoFromIp } from "../../services/geoIp";
+import { getGeoLocation } from "../../services/geoLocation";
+import { getSunriseSunset } from "../../services/sunriseSunset";
 
 // This component is the main layout and our higher order component for
 // the Sunrise & Sunset finder page.
-const SunFinderLayout = () => {
-  const [ipAddress, setIpAddress] = useState<string>('');
+const SunriseFinderLayout = () => {
+  const [ipAddress, setIpAddress] = useState<string>("");
   const [latitude, setLatitude] = useState<number>(null);
   const [longitude, setLongitude] = useState<number>(null);
   const [sunrise, setSunrise] = useState<string>(null);
@@ -27,13 +27,15 @@ const SunFinderLayout = () => {
     getSunriseSunset(lat || latitude, lng || longitude)
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       .then((result: any) => {
-        const sunrise: string = result?.data?.results?.sunrise || '';
-        const sunset: string = result?.data?.results?.sunset || '';
+        const sunrise: string = result?.data?.results?.sunrise || "";
+        const sunset: string = result?.data?.results?.sunset || "";
         if (result?.data?.results) {
           setSunrise(sunrise);
           setSunset(sunset);
         } else {
-          console.error('Failed to get sunrise/sunset data from api.sunrise-sunset.org');
+          console.error(
+            "Failed to get sunrise/sunset data from api.sunrise-sunset.org"
+          );
         }
       })
       .catch((err) => {
@@ -54,7 +56,7 @@ const SunFinderLayout = () => {
       // If we have lat and lng then get sunrise / sunset times
       if (latitude && longitude) {
         callGetSunriseSunset();
-      } else if (ipAddress !== '') {
+      } else if (ipAddress !== "") {
         // We have ip address, so use it to get lat lng
         getGeoFromIp(ipAddress)
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -68,7 +70,7 @@ const SunFinderLayout = () => {
               // We need to pass lat and lng because the state will not be updated yet.
               callGetSunriseSunset(lat, lng);
             } else {
-              console.error('Failed to get location data from api.ipbase.com');
+              console.error("Failed to get location data from api.ipbase.com");
             }
           })
           .catch((err) => {
@@ -84,7 +86,7 @@ const SunFinderLayout = () => {
     getGeoLocation()
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       .then((result: any) => {
-        const ip: string = result?.data?.IPv4 || '';
+        const ip: string = result?.data?.IPv4 || "";
         const lat: number = result?.data?.latitude || 0;
         const lng: number = result?.data?.longitude || 0;
         if (result?.data) {
@@ -92,7 +94,7 @@ const SunFinderLayout = () => {
           setLatitude(lat);
           setLongitude(lng);
         } else {
-          console.error('Failed to get location data from geolocation-db');
+          console.error("Failed to get location data from geolocation-db");
         }
       })
       .catch((err) => {
@@ -108,9 +110,16 @@ const SunFinderLayout = () => {
   };
 
   return (
-    <div className="px-3 py-3 my-5 text-center">
-      <h1 className="display-5 fw-bold">{getTranslation('SunFinderLayout', 'Title')}</h1>
-      <p className="lead mb-4">{getTranslation('SunFinderLayout', 'PageDescription')}</p>
+    <div
+      className="px-3 py-3 my-5 text-center"
+      data-testid="sunriseFinderLayout"
+    >
+      <h1 className="display-5 fw-bold">
+        {getTranslation("SunriseFinderLayout", "Title")}
+      </h1>
+      <p className="lead mb-4">
+        {getTranslation("SunriseFinderLayout", "PageDescription")}
+      </p>
       <IpAddressInput
         ipAddress={ipAddress}
         setIpAddress={onIpAddressChange}
@@ -123,15 +132,22 @@ const SunFinderLayout = () => {
           className="btn btn-primary btn-lg px-4 gap-3"
           onClick={onFindSunriseSunset}
         >
-          {getTranslation('SunFinderLayout', 'Go')}
+          {getTranslation("SunriseFinderLayout", "Go")}
         </button>
       </div>
       {sunrise && sunset ? (
-        <SunriseSunsetDisplay sunrise={sunrise} sunset={sunset}></SunriseSunsetDisplay>
+        <SunriseSunsetDisplay
+          sunrise={sunrise}
+          sunset={sunset}
+        ></SunriseSunsetDisplay>
       ) : null}
-      <LeafletMap latitude={latitude} longitude={longitude} sunrise={sunrise}></LeafletMap>
+      <LeafletMap
+        latitude={latitude}
+        longitude={longitude}
+        sunrise={sunrise}
+      ></LeafletMap>
     </div>
   );
 };
 
-export default SunFinderLayout;
+export default SunriseFinderLayout;

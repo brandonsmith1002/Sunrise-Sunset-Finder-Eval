@@ -6,7 +6,6 @@
     "axios": "^1.3.4",
     "bootstrap": "^5.2.3",
     "i18next": "^22.4.10",
-    "jest-nock": "^0.2.2",
     "leaflet": "^1.9.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -30,9 +29,6 @@
     "eslint-plugin-prettier": "^4.2.1",
     "jest": "^27.5.1",
     "react-test-renderer": "^18.2.0"
-  },
-  "jest": {
-    "testEnvironment": "jsdom"
   },
   "scripts": {
     "start": "react-scripts start",

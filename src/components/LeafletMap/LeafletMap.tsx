@@ -1,20 +1,27 @@
-import React, { useRef, useEffect, useState } from 'react';
-import L from 'leaflet';
-import 'leaflet/dist/leaflet.css';
-import './LeafletMap.css';
-import { LatLngExpression } from 'leaflet';
-import { MapContainer, TileLayer, Marker } from 'react-leaflet';
-import PropTypes from 'prop-types';
+import React, { useRef, useEffect, useState } from "react";
+import L from "leaflet";
+import "leaflet/dist/leaflet.css";
+import "./LeafletMap.css";
+import { LatLngExpression } from "leaflet";
+import { MapContainer, TileLayer, Marker } from "react-leaflet";
+import PropTypes from "prop-types";
+import markerIcon2 from "leaflet/dist/images/marker-icon-2x.png";
+import markerIcon from "leaflet/dist/images/marker-icon.png";
+import markerShadow from "leaflet/dist/images/marker-shadow.png";
 
 // This is to get the marker icon to show on map
 L.Icon.Default.mergeOptions({
-  iconRetinaUrl: require('leaflet/dist/images/marker-icon-2x.png'),
-  iconUrl: require('leaflet/dist/images/marker-icon.png'),
-  shadowUrl: require('leaflet/dist/images/marker-shadow.png'),
+  iconRetinaUrl: markerIcon2,
+  iconUrl: markerIcon,
+  shadowUrl: markerShadow,
 });
 
 // Simple Leaflet map component
-const LeafletMap = (props: { latitude: number; longitude: number; sunrise: string }) => {
+const LeafletMap = (props: {
+  latitude: number;
+  longitude: number;
+  sunrise: string;
+}) => {
   const mapRef = useRef(null);
   const [latLng, setLatLng] = useState<LatLngExpression>(null);
 
@@ -25,10 +32,11 @@ const LeafletMap = (props: { latitude: number; longitude: number; sunrise: strin
       mapRef.current.setView(newLatLng, 10);
       setLatLng(newLatLng);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [props.sunrise]);
 
   return (
-    <div className="p-3 mx-3">
+    <div className="p-3 mx-3" data-testid="leafletMap">
       <MapContainer
         className="leaflet-map-container"
         ref={mapRef}

@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
-import { getTranslation } from '../../utils/translations';
-import { isValidIpAddress } from '../../utils/common';
+import React, { useState, useEffect } from "react";
+import PropTypes from "prop-types";
+import { getTranslation } from "../../utils/translations";
+import { isValidIpAddress } from "../../utils/common";
 
 // This component is the IP address input and auto fill button.  It
 // does not store the state of the IP address, but instead uses the setter
@@ -29,7 +29,7 @@ const IpAddressInput = (props: {
       setLoading(false);
     }
     let val = e.target.value;
-    val = val.replace(/[^0-9.]/g, ''); // Only numbers and decimals
+    val = val.replace(/[^0-9.]/g, ""); // Only numbers and decimals
     props.setIpAddress(val);
   };
 
@@ -43,7 +43,7 @@ const IpAddressInput = (props: {
   // toggle the loading message on, set IP as valid and call our props
   // function to get the API request on it's way.
   const onAutoFill = () => {
-    props.setIpAddress('');
+    props.setIpAddress("");
     setLoading(true);
     setIPAddressValid(true);
     props.onGetGeoLocation();
@@ -53,23 +53,28 @@ const IpAddressInput = (props: {
   const getErrorMessage = () => {
     return (
       <div className="text-danger">
-        <small>{getTranslation('IpAddressInput', 'InvalidIpMessage')}</small>
+        <small>{getTranslation("IpAddressInput", "InvalidIpMessage")}</small>
       </div>
     );
   };
 
   return (
-    <div className="d-grid gap-2 d-sm-flex justify-content-sm-center">
+    <div
+      className="d-grid gap-2 d-sm-flex justify-content-sm-center"
+      data-testid="ipAddressInput"
+    >
       <div className="mb-3">
-        <label className="form-label">{getTranslation('IpAddressInput', 'IpAddress')}</label>
+        <label className="form-label">
+          {getTranslation("IpAddressInput", "IpAddress")}
+        </label>
         <div className="input-group">
           <input
             type="text"
-            className={`form-control ${!ipAddressValid ? 'is-invalid' : ''}`}
+            className={`form-control ${!ipAddressValid ? "is-invalid" : ""}`}
             placeholder={
               loading
-                ? getTranslation('IpAddressInput', 'Loading')
-                : getTranslation('IpAddressInput', 'IpAddress')
+                ? getTranslation("IpAddressInput", "Loading")
+                : getTranslation("IpAddressInput", "IpAddress")
             }
             value={props.ipAddress}
             onChange={onIpAddressChange}
@@ -79,9 +84,9 @@ const IpAddressInput = (props: {
             type="button"
             className="btn btn-outline-secondary"
             onClick={onAutoFill}
-            title={getTranslation('IpAddressInput', 'AutoFillTooltip')}
+            title={getTranslation("IpAddressInput", "AutoFillTooltip")}
           >
-            {getTranslation('IpAddressInput', 'AutoFill')}
+            {getTranslation("IpAddressInput", "AutoFill")}
           </button>
         </div>
         {!ipAddressValid && getErrorMessage()}

@@ -1,7 +1,10 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { getTranslation } from '../../utils/translations';
-import { constructDateObjectFromTimeString, convertUtcDateToLocalDate } from '../../utils/common';
+import React from "react";
+import PropTypes from "prop-types";
+import { getTranslation } from "../../utils/translations";
+import {
+  constructDateObjectFromTimeString,
+  convertUtcDateToLocalDate,
+} from "../../utils/common";
 
 // This is the display for Sunrise and Sunset.  We'll need some help from our utils in
 // doing all the conversions.  Here we're given the sunrise and sunset in UTC time strings,
@@ -9,24 +12,31 @@ import { constructDateObjectFromTimeString, convertUtcDateToLocalDate } from '..
 // -> local date object -> local time string
 const SunriseSunsetDisplay = (props: { sunrise: string; sunset: string }) => {
   const localSunriseDate = constructDateObjectFromTimeString(props.sunrise);
-  const localSunrise = convertUtcDateToLocalDate(localSunriseDate).toLocaleTimeString('en-US', {
-    timeZoneName: 'short',
+  const localSunrise = convertUtcDateToLocalDate(
+    localSunriseDate
+  ).toLocaleTimeString("en-US", {
+    timeZoneName: "short",
   });
   const localSunsetDate = constructDateObjectFromTimeString(props.sunset);
-  const localSunset = convertUtcDateToLocalDate(localSunsetDate).toLocaleTimeString('en-US', {
-    timeZoneName: 'short',
+  const localSunset = convertUtcDateToLocalDate(
+    localSunsetDate
+  ).toLocaleTimeString("en-US", {
+    timeZoneName: "short",
   });
 
   return (
-    <div className="pt-4 d-grid gap-2 d-sm-flex justify-content-sm-center">
+    <div
+      className="pt-4 d-grid gap-2 d-sm-flex justify-content-sm-center"
+      data-testid="sunriseSunsetDisplay"
+    >
       <p className="lead mb-1">{`${getTranslation(
-        'SunriseSunsetDisplay',
-        'SunriseIsAt',
+        "SunriseSunsetDisplay",
+        "SunriseIsAt"
       )} ${localSunrise}`}</p>
       <div className="vr d-none d-sm-block"></div>
       <p className="lead mb-1">{`${getTranslation(
-        'SunriseSunsetDisplay',
-        'SunsetIsAt',
+        "SunriseSunsetDisplay",
+        "SunsetIsAt"
       )} ${localSunset}`}</p>
     </div>
   );
