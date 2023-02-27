@@ -37,7 +37,7 @@ Jest component tests can be run with the command (npm test).  There is a test fi
 
 ### Future Thoughts
 
-The App was designed with scalability in mind.  It would be easy to add new ways of inputting geographic data, either by form input or map selection.  New components and features can be easily added to the project without interfering with existing functionality.
+This App was designed with scalability in mind.  It would be easy to add new ways of inputting geographic data, either by form input or map selection.  New components and features can be easily added to the project without interfering with existing functionality.  Currently there is only one display (page) for this app, if scaled belong that I would implement React Router with a route for each.  The app has very little state and using Reacts Hook useState was perfect for the job (that's what I used).  If there was a need to store a large amount of state that needed to be accessed throughout the app, I would implement Redux.    
 
 ## Available Scripts
 
