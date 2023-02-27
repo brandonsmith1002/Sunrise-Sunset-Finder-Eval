@@ -2,6 +2,8 @@
 
 This web app provides a way for a user to find the sunrise and sunset times by IP Address.  These times will be in the local time zone of the user, not the location of the IP Address.  There is also an "Auto Find" feature that will automatically find the users IP for them.  Once an IP Address is entered and the user selects "Go", the sunrise and sunrise times will be displayed.  In addition, the map will be zoomed with a pin marking the location determined by the IP Address.
 
+For this evaluation, I decided to keep the UI clean and to the point.  The API's used provided a lot of additional information that I could have easily displayed, however I decided just because I could didn't mean I should.  The user comes here for the sunrise and sunset, so that's what they'll get.  I spent around 10 hours putting this project together from scratch.
+
 ### Setup and start ###
 1. Requires [NodeJS](https://nodejs.org/en/) and [NPM](https://www.npmjs.com/).  It has been tested with NodeJS 16 and 18.
 2. Run the command "npm ci" from the root directory that has the package.json.
@@ -25,7 +27,7 @@ Using [i18Next](https://www.i18next.com/) the App is ready for internationalizat
 
 ### Unit Tests
 
-Jest component tests can be run with the command (npm test).
+Jest component tests can be run with the command (npm test).  There is a test file for each component with a basic render test.  These tests are not exhaustive. 
 
 ### External APIs
 
